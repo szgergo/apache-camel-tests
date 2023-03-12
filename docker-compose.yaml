@@ -41,6 +41,11 @@ services:
       - "22:22"
     volumes:
       - ./sftp-config/config.json:/app/config/sftp.json:ro
+  adminer:
+    image: "adminer:4.8.1-standalone"
+    restart: always
+    ports:
+      - 8080:8080
 
 volumes:
   zookeeper_data:

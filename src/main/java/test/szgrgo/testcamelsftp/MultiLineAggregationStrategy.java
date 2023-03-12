@@ -2,15 +2,13 @@ package test.szgrgo.testcamelsftp;
 
 import org.apache.camel.AggregationStrategy;
 import org.apache.camel.Exchange;
-
 import org.apache.camel.Predicate;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class MyAggregationStrategy implements AggregationStrategy, Predicate {
+public class MultiLineAggregationStrategy implements AggregationStrategy, Predicate {
 
     private final List<String> list = new ArrayList<>();
 
@@ -31,7 +29,6 @@ public class MyAggregationStrategy implements AggregationStrategy, Predicate {
         exchange.getIn().setBody(list.stream().collect(Collectors.joining()));
         list.clear();
     }
-
 
     @Override
     public boolean matches(Exchange exchange) {

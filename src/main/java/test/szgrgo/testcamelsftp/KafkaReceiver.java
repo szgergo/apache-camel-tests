@@ -8,6 +8,6 @@ public class KafkaReceiver {
     private static final Logger logger = LoggerFactory.getLogger(KafkaReceiver.class);
 
     public void receiveFromKafka(String message) {
-        logger.info("Message from kafka {}", message);
+        logger.info("Message from kafka: [{}]", message);
     }
 }

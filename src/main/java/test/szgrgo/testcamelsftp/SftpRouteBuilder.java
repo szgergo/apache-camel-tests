@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 public class SftpRouteBuilder extends RouteBuilder {
     @Override
     public void configure() {
-        AggregationStrategy aggregationStrategy = new MyAggregationStrategy();
+        AggregationStrategy aggregationStrategy = new MultiLineAggregationStrategy();
         from(sftpWithIdempotentRepository())
                .routeId("pollSftpRoute1")
                .log(LoggingLevel.INFO, "File ${file:name} downloaded")
                .split(body().tokenize("\n"))
                 .aggregate(aggregationStrategy)
-                .method(Something.class, "getSomething")
+                .body()
                .to("kafka:test?brokers=localhost:9094");
     }
 

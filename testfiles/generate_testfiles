@@ -1,0 +1,4 @@
+
+1, mkdir -p testfiles_generated # this directory is in gitignore so safe to generate lot of files into this.
+
+2, for i in {1..10}; do cp testfile testfiles_generated/"testfile_$i"; done

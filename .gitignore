@@ -6,7 +6,7 @@ target/
 
 
 *.class
-testfiles/*
+*/testfiles_generated/*
 .mvn
 .DS_STORE
 

@@ -1,13 +1,11 @@
 package test.szgrgo.testcamelsftp;
 
-import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import org.apache.camel.AggregationStrategy;
-import org.apache.camel.CamelContext;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.processor.idempotent.hazelcast.HazelcastIdempotentRepository;
 
+import org.apache.camel.spi.IdempotentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,16 +13,16 @@ import org.springframework.stereotype.Component;
 public class SftpRouteBuilder extends RouteBuilder {
 
     @Autowired
-    private CamelContext camelContext;
+    private HazelcastInstance hazelcastInstance;
+
+    @Autowired
+    private AggregationStrategy aggregationStrategy;
+
+    @Autowired
+    private IdempotentRepository idempotentRepository;
 
     @Override
     public void configure() {
-        AggregationStrategy aggregationStrategy = new MultiLineAggregationStrategy();
-
-        HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance();
-        HazelcastIdempotentRepository idempotentRepository = new HazelcastIdempotentRepository(hazelcastInstance);
-        camelContext.getRegistry().bind("idempotentRepository",idempotentRepository);
-
         from(sftpWithReadLockIdempotency())
                .routeId("pollSftpRoute1")
                .idempotentConsumer(header("CamelFileName"), idempotentRepository)

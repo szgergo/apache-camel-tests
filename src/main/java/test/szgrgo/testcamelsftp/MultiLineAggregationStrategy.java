@@ -3,11 +3,13 @@ package test.szgrgo.testcamelsftp;
 import org.apache.camel.AggregationStrategy;
 import org.apache.camel.Exchange;
 import org.apache.camel.Predicate;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Component
 public class MultiLineAggregationStrategy implements AggregationStrategy, Predicate {
 
     private final List<String> list = new ArrayList<>();

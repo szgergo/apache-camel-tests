@@ -33,16 +33,6 @@ services:
      - POSTGRES_PASSWORD=example
      - POSTGRES_USER=example
      - POSTGRES_DB=test
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.2.1-fpm-alpine
-    restart: always
-    ports:
-      - "5678:80"
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_ABSOLUTE_URI=localhost:9200
-    depends_on:
-      - db
   sftp:
     image: "emberstack/sftp:build-5.1.6"
     ports:

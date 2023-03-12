@@ -30,6 +30,11 @@ services:
       - "22:22"
     volumes:
       - ./sftp-config/config.json:/app/config/sftp.json:ro
+  hazelcast-manager:
+    image: "hazelcast/management-center:5.2.1"
+    restart: always
+    ports:
+      - "8080:8080"
 
 volumes:
   zookeeper_data:

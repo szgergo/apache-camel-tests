@@ -26,7 +26,6 @@ public class SftpRouteBuilder extends RouteBuilder {
         camelContext.getRegistry().bind("idempotentRepository",idempotentRepository);
 
         from(sftpWithReadLockIdempotency())
-
                .routeId("pollSftpRoute1")
                .idempotentConsumer(header("CamelFileName"), idempotentRepository)
                .log(LoggingLevel.INFO, "File ${file:name} downloaded")

@@ -32,7 +32,6 @@ public class SftpRouteBuilder extends RouteBuilder {
         // SQL: CREATE TABLE CAMEL_MESSAGEPROCESSED (processorName VARCHAR(255), messageId VARCHAR(100), createdAt TIMESTAMP, PRIMARY KEY (processorName, messageId))
         camelContext.getRegistry().bind("idempotentRepository", idempotentRepository);
 
-
         from("sftp://localhost:22?username=demo&password=demo")
                .routeId("pollSftpRoute1")
                .idempotentConsumer(header("CamelFileName"), idempotentRepository)

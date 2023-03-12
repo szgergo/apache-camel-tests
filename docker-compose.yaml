@@ -29,6 +29,8 @@ services:
     restart: always
     ports:
       - "5432:5432"
+    volumes:
+      - ./init-db-script/init.sql:/docker-entrypoint-initdb.d/1-schema.sql
     environment:
      - POSTGRES_PASSWORD=example
      - POSTGRES_USER=example

@@ -28,7 +28,7 @@ public class SftpRouteBuilder extends RouteBuilder {
         JdbcMessageIdRepository idempotentRepository = new JdbcMessageIdRepository(dataSource,
                 transactionTemplate,
                 "testProcessor");
-        //Idempotency table: setCreateTableIfNotExists does not work, table can't be created from here, needs manual work:
+        //Idempotency table: setCreateTableIfNotExists does not work, table can't be created from here, needs manual work or put in docker-compose:
         // SQL: CREATE TABLE CAMEL_MESSAGEPROCESSED (processorName VARCHAR(255), messageId VARCHAR(100), createdAt TIMESTAMP, PRIMARY KEY (processorName, messageId))
         camelContext.getRegistry().bind("idempotentRepository", idempotentRepository);
 

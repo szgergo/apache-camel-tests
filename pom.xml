@@ -23,11 +23,6 @@
 			<version>4.0.0-M2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.camel.springboot</groupId>
-			<artifactId>camel-hazelcast-starter</artifactId>
-			<version>4.0.0-M2</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-ftp</artifactId>
 			<version>4.0.0-M2</version>
